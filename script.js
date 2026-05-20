@@ -18,6 +18,8 @@ const GAME = {
   streak: 0,
 };
 
+let nextRoundTimeoutId = null;
+
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -53,15 +55,24 @@ function drawDots() {
   updateLegend(total);
 }
 
-function newRound() {
-  GAME.a = randomInt(1, 10);
-  GAME.b = randomInt(1, 10);
-  updateTask();
-  drawDots();
-  answerInput.value = "";
-  answerInput.focus();
+function clearRoundFeedback() {
+  answerForm.reset();
   messageEl.textContent = "";
   messageEl.className = "message";
+}
+
+function newRound() {
+  if (nextRoundTimeoutId) {
+    clearTimeout(nextRoundTimeoutId);
+    nextRoundTimeoutId = null;
+  }
+
+  GAME.a = randomInt(1, 10);
+  GAME.b = randomInt(1, 10);
+  clearRoundFeedback();
+  updateTask();
+  drawDots();
+  answerInput.focus();
 }
 
 function setMessage(text, ok) {
@@ -84,7 +95,10 @@ answerForm.addEventListener("submit", (event) => {
     GAME.streak += 1;
     updateHUD();
     setMessage(`Браво! ${GAME.a} × ${GAME.b} = ${expected}`, true);
-    setTimeout(newRound, 700);
+    nextRoundTimeoutId = setTimeout(() => {
+      nextRoundTimeoutId = null;
+      newRound();
+    }, 700);
     return;
   }
 
