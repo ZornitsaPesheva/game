@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кръгло Умножение</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-shape bg-shape-1"></div>
+  <div class="bg-shape bg-shape-2"></div>
+
+  <main class="game-wrap">
+    <section class="card">
+      <h1>Кръгло Умножение</h1>
+      <p class="subtitle">Сметни задачата и виж групите от кръгчета по редове и колони.</p>
+
+      <div class="hud">
+        <div class="pill"><span id="score">0</span> точки</div>
+        <div class="pill"><span id="streak">0</span> поред</div>
+      </div>
+
+      <div class="task" aria-live="polite">
+        <span id="factorA">2</span>
+        <span class="symbol">×</span>
+        <span id="factorB">3</span>
+        <span class="symbol">=</span>
+        <span class="answer-slot">?</span>
+      </div>
+
+      <form id="answerForm" class="controls">
+        <label for="answerInput">Твоят отговор</label>
+        <div class="row">
+          <input id="answerInput" type="number" min="0" step="1" required autocomplete="off" inputmode="numeric" />
+          <button type="submit">Провери</button>
+          <button type="button" id="nextBtn" class="ghost">Нова задача</button>
+        </div>
+      </form>
+
+      <p id="message" class="message" aria-live="polite"></p>
+
+      <div class="legend">
+        <span id="legendRows">Редове: 2</span>
+        <span id="legendCols">Колони: 3</span>
+        <span id="legendTotal">Общо: 6 кръгчета</span>
+      </div>
+
+      <section id="grid" class="dot-grid" aria-label="Визуализация с кръгчета"></section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
