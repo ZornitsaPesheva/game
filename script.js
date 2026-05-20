@@ -10,7 +10,6 @@ const nextBtn = document.getElementById("nextBtn");
 
 const legendRowsEl = document.getElementById("legendRows");
 const legendColsEl = document.getElementById("legendCols");
-const legendTotalEl = document.getElementById("legendTotal");
 
 const GAME = {
   a: 2,
@@ -36,7 +35,6 @@ function updateTask() {
 function updateLegend(total) {
   legendRowsEl.textContent = `Редове: ${GAME.a}`;
   legendColsEl.textContent = `Колони: ${GAME.b}`;
-  legendTotalEl.textContent = `Общо: ${total} кръгчета`;
 }
 
 function drawDots() {
