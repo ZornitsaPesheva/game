@@ -18,6 +18,8 @@ const GAME = {
   streak: 0,
 };
 
+const CORRECT_ANSWER_DELAY_MS = 1800;
+
 let nextRoundTimeoutId = null;
 
 function randomInt(min, max) {
@@ -98,7 +100,7 @@ answerForm.addEventListener("submit", (event) => {
     nextRoundTimeoutId = setTimeout(() => {
       nextRoundTimeoutId = null;
       newRound();
-    }, 700);
+    }, CORRECT_ANSWER_DELAY_MS);
     return;
   }
 
